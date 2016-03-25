@@ -1,0 +1,27 @@
+body {
+	width: 90% ;
+	margin: 0 auto;
+	padding-top: 2em;
+}
+
+.login-form {
+	float: right;
+}
+
+.paddingTop {
+	padding-top: 60px;
+}
+
+.center {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.center h3 {
+	padding-left: 90px;
+}
+
+.center label {
+	padding-top: 10px;
+}
+

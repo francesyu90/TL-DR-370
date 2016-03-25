@@ -16,3 +16,43 @@ Mar 21, 2016 6:11:24 PM org.apache.jk.server.JkMain start
 INFO: Jk running ID=0 time=0/20  config=null
 Mar 21, 2016 6:11:24 PM org.apache.catalina.startup.Catalina start
 INFO: Server startup in 670 ms
+Mar 21, 2016 6:15:12 PM org.apache.coyote.http11.Http11Protocol pause
+INFO: Pausing Coyote HTTP/1.1 on http-8081
+Mar 21, 2016 6:15:13 PM org.apache.catalina.core.StandardService stop
+INFO: Stopping service Catalina
+Mar 21, 2016 6:15:13 PM org.apache.coyote.http11.Http11Protocol destroy
+INFO: Stopping Coyote HTTP/1.1 on http-8081
+Mar 21, 2016 6:15:21 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /Users/francesyu/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+Mar 21, 2016 6:15:21 PM org.apache.coyote.http11.Http11Protocol init
+INFO: Initializing Coyote HTTP/1.1 on http-8081
+Mar 21, 2016 6:15:21 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 350 ms
+Mar 21, 2016 6:15:21 PM org.apache.catalina.core.StandardService start
+INFO: Starting service Catalina
+Mar 21, 2016 6:15:21 PM org.apache.catalina.core.StandardEngine start
+INFO: Starting Servlet Engine: Apache Tomcat/6.0.18
+Mar 21, 2016 6:15:22 PM org.apache.coyote.http11.Http11Protocol start
+INFO: Starting Coyote HTTP/1.1 on http-8081
+Mar 21, 2016 6:15:22 PM org.apache.jk.common.ChannelSocket init
+INFO: JK: ajp13 listening on /0.0.0.0:8009
+Mar 21, 2016 6:15:22 PM org.apache.jk.server.JkMain start
+INFO: Jk running ID=0 time=0/31  config=null
+Mar 21, 2016 6:15:22 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 784 ms
+Mar 21, 2016 6:56:13 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 21, 2016 6:56:13 PM org.apache.catalina.core.StandardWrapper unload
+INFO: Waiting for 1 instance(s) to be deallocated
+Mar 21, 2016 6:56:14 PM org.apache.catalina.core.StandardWrapper unload
+INFO: Waiting for 1 instance(s) to be deallocated
+Mar 21, 2016 6:56:15 PM org.apache.catalina.core.StandardWrapper unload
+INFO: Waiting for 1 instance(s) to be deallocated
+Mar 21, 2016 7:22:56 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 21, 2016 7:34:45 PM org.apache.coyote.http11.Http11Protocol pause
+INFO: Pausing Coyote HTTP/1.1 on http-8081
+Mar 21, 2016 7:34:46 PM org.apache.catalina.core.StandardService stop
+INFO: Stopping service Catalina
+Mar 21, 2016 7:34:46 PM org.apache.coyote.http11.Http11Protocol destroy
+INFO: Stopping Coyote HTTP/1.1 on http-8081

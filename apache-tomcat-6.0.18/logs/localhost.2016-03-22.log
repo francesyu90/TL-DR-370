@@ -1,0 +1,8 @@
+Mar 22, 2016 3:19:17 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 22, 2016 3:19:17 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 22, 2016 3:19:17 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.catalina.Registry', 'org.apache.tomcat.util.modeler.Registry@4883b407')
+Mar 22, 2016 3:19:17 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.catalina.MBeanServer', 'com.sun.jmx.mbeanserver.JmxMBeanServer@7d9d1a19')

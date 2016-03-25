@@ -27,7 +27,7 @@ public class ConnectionManager {
         else { //No one left in the stack, create a new one
             try {
                 conn = DriverManager.getConnection 			 
-			("jdbc:oracle:thin:@localhost:1522:studentdb", "c##thomo", "uvic"); 
+			("jdbc:oracle:thin:@localhost:1522:orcl", "c##byu00", "V00810721"); 
             } catch (SQLException ex) { 
                 System.out.println("SQLException: " + ex); 
             }

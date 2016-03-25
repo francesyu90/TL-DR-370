@@ -1,17 +1,26 @@
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="/CSS/normalize.css">
+        <link rel="stylesheet" type="text/css" href="/CSS/styles.css">
+        <link rel="stylesheet" href="http://basehold.it/24">
         <title>Insert</title>
     </head>
-    <body><font size="4">
-        <center>Please enter your name and password then press start<br>
-            <form method="GET" action="http://localhost:8081/servlet/Insert" >
-                Title: <input type="text" name="title" value="" /> <br>
-                Year: <input type="text" name="year" value="" /> <br>
-                Length: <input type="text" name="length" value="" /> <br>
-                Studio: <input type="text" name="studio" value="" /> <br>
-                <input type="submit" value="Start" >    <br>
-            </form>
-        </center>
-        <hr>
+    <body>
+        <h1 class="group-name">TL:DR-370</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="Insert.html">Insert</a>
+            <a href="GetExample.html">Get Example</a>
+        </nav>
+       
+        <form method="GET" action="http://localhost:8081/servlet/Insert" >
+            Title: <input type="text" name="title" value="" /> <br>
+            Year: <input type="text" name="year" value="" /> <br>
+            Length: <input type="text" name="length" value="" /> <br>
+            Studio: <input type="text" name="studio" value="" /> <br>
+            <input type="submit" value="Start" >    <br>
+        </form>
+   
+       
     </body>
 </html> 
