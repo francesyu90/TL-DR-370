@@ -38,12 +38,15 @@ public class OutgoingRoutes extends HttpServlet {
                 out.println("<li><a href='http://localhost:8081/servlet/Airlines'>Airlines</a></li>");
                 out.println("<li class='active'><a href='http://localhost:8081/servlet/Routes'>Routes</a></li>");
                 out.println("<li><a href='http://localhost:8081/servlet/Departures'>Departures</a></li>");
+                out.println("<li><a href='http://localhost:8081/servlet/Arrivals'>Arrivals</a></li>");
                 out.println("</ul>");
                 out.println("</nav>");
                 out.println("<div class='paddingTop'>");
                 out.println("<a href='../insertRoutes.html' class='btn btn-info floatRight' role='button'>Insert New Route</a>");
-           		out.println("<h3>Outgoing Routes");
+           		out.println("<br>");
+                out.println("<h3>Outgoing Routes");
                 out.println("</h3>");
+                out.println("<br>");
                 out.println("<table class='table table-striped table-hover'>");
                 out.println("<thead class='thead-inverse'>");
                 out.println("<tr>");

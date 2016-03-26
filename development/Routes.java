@@ -35,12 +35,14 @@ public class Routes extends HttpServlet {
         out.println("<li><a href='http://localhost:8081/servlet/Airlines'>Airlines</a></li>");
         out.println("<li class='active'><a href='http://localhost:8081/servlet/Routes'>Routes</a></li>");
         out.println("<li><a href='http://localhost:8081/servlet/Departures'>Departures</a></li>");
+        out.println("<li><a href='http://localhost:8081/servlet/Arrivals'>Arrivals</a></li>");
         out.println("</ul>");
         out.println("</nav>");
         out.println("<div class='paddingTop floatRight'>");
         out.println("<div class='btn-group' role='group' aria-label='...''>");
-        out.println("<a href='http://localhost:8081/servlet/IncomingRoutes' class='btn btn-info floatRight' role='button'>Incoming Routes</a>");
-        out.println("<a href='http://localhost:8081/servlet/OutgoingRoutes' class='btn btn-info floatRight' role='button'>Outgoing Routes</a>");
+        out.println("<a href='http://localhost:8081/servlet/IncomingRoutes' class='btn btn-info' role='button'>Incoming Routes</a>");
+        out.println("<a href='http://localhost:8081/servlet/OutgoingRoutes' class='btn btn-info' role='button'>Outgoing Routes</a>");
+        out.println("<a href='../insertRoutes.html' class='btn btn-info' role='button'>Insert New Route</a>");
    		out.println("</div>");
        
         out.println("</div>");  //  end of padding top
