@@ -3,7 +3,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 
-public class IncomingRoutes extends HttpServlet {
+public class Departures extends HttpServlet {
     void processRequest(HttpServletRequest request, HttpServletResponse response)  						throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -13,8 +13,8 @@ public class IncomingRoutes extends HttpServlet {
         try { 
                 Statement stmt = conn.createStatement();
                 ResultSet rset = stmt.executeQuery(
-                        "SELECT Routes.rnum, plane_model, source, in_t " +
-                        "FROM Routes, Incoming_Routes WHERE Routes.rnum = Incoming_Routes.rnum");
+                        "SELECT depid, gnum, dep_t, rnum, acode " +
+                        "FROM Departures");
 
                 out.println("<HTML>");
                 out.println("<HEAD>");
@@ -36,21 +36,22 @@ public class IncomingRoutes extends HttpServlet {
                 out.println("<ul class='nav navbar-nav'>");
                 out.println("<li><a href='/'>Home</a></li>");
                 out.println("<li><a href='http://localhost:8081/servlet/Airlines'>Airlines</a></li>");
-                out.println("<li class='active'><a href='http://localhost:8081/servlet/Routes'>Routes</a></li>");
-                out.println("<li><a href='http://localhost:8081/servlet/Departures'>Departures</a></li>");
+                out.println("<li><a href='http://localhost:8081/servlet/Routes'>Routes</a></li>");
+                out.println("<li class='active'><a href='http://localhost:8081/servlet/Departures'>Departures</a></li>");
                 out.println("</ul>");
                 out.println("</nav>");
                 out.println("<div class='paddingTop'>");
-                out.println("<a href='../insertRoutes.html' class='btn btn-info floatRight' role='button'>Insert New Route</a>");
-           		out.println("<h3>Incoming Routes");
+                out.println("<a href='../insertDepartures.html' class='btn btn-info floatRight' role='button'>Insert New Departure</a>");
+           		out.println("<h3>Departures");
                 out.println("</h3>");
                 out.println("<table class='table table-striped table-hover'>");
                 out.println("<thead class='thead-inverse'>");
                 out.println("<tr>");
+                out.println("<th>Departure ID</th>");
+                out.println("<th>Gate #</th>");
+                out.println("<th>Departure Time</th>");
                 out.println("<th>Route #</th>");
-                out.println("<th>Plane Model</th>");
-                out.println("<th>Source</th>");
-                out.println("<th>Planned Arrival Time</th>");
+                out.println("<th>Airline Code</th>");
                 out.println("</tr>");
                 out.println("</thead>");
                 out.println("<tbody>");
@@ -58,15 +59,16 @@ public class IncomingRoutes extends HttpServlet {
 
         			out.println("<tr>");
         			out.print (
-        				"<td>"+rset.getString("rnum")+"</td>"+
-                        "<td>"+rset.getString("plane_model")+"</td>"+
-                        "<td>"+rset.getString("source")+"</td>"+
-                        "<td>"+rset.getString("in_t")+"</td>"
+        				"<td>"+rset.getString("depid")+"</td>"+
+                        "<td>"+rset.getString("gnum")+"</td>"+
+                        "<td>"+rset.getString("dep_t")+"</td>"+
+                        "<td>"+rset.getString("rnum")+"</td>"+
+                        "<td>"+rset.getString("acode")+"</td>"
                         );
         				out.println("</tr>");
         		}
                 out.println("</tbody>");
-        		out.println("</table>"); // end of incoming routes
+        		out.println("</table>"); // end of departures
                 out.println("</div>");  //  end of padding top
                 out.println("</BODY>");
                 out.println("</HTML>");

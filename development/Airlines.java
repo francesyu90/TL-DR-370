@@ -36,6 +36,7 @@ public class Airlines extends HttpServlet {
                 out.println("<li><a href='/'>Home</a></li>");
                 out.println("<li class='active'><a href='http://localhost:8081/servlet/Airlines'>Airlines</a></li>");
                 out.println("<li><a href='http://localhost:8081/servlet/Routes'>Routes</a></li>");
+                out.println("<li><a href='http://localhost:8081/servlet/Departures'>Departures</a></li>");
                 out.println("</ul>");
                 out.println("</nav>");
                 out.println("<div class='paddingTop'>");
