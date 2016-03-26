@@ -13,8 +13,8 @@ public class MovieServlet1 extends HttpServlet {
       try { 
     	  Statement stmt = conn.createStatement();
     	  ResultSet rset = stmt.executeQuery(
-                        "SELECT title, year " +
-                        "FROM Movies");
+                        "SELECT name " +
+                        "FROM airlines");
       
     	  out.println("<table>");
           while (rset.next()) {
