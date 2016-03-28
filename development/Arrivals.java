@@ -15,7 +15,7 @@ public class Arrivals extends HttpServlet {
         
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         DateFormat dateFormat1 = new SimpleDateFormat("HH:mm");
-
+        DateFormat dateFormat2 = new SimpleDateFormat("dd MMM");
        
         
         Connection conn = ConnectionManager.getInstance().getConnection();
@@ -64,6 +64,7 @@ public class Arrivals extends HttpServlet {
                 out.println("<table class='table table-striped table-hover'>");
                 out.println("<thead class='thead-inverse'>");
                 out.println("<tr>");
+                out.println("<th>Date</th>");
                 out.println("<th>Airline Code</th>");
                 out.println("<th>Arrival Time</th>");
                 out.println("<th>From</th>");
@@ -78,9 +79,11 @@ public class Arrivals extends HttpServlet {
                     Date currDate = new Date();
                     String status = (currDate.before(date))?"Scheduled":"Landed";
                     String dateString = dateFormat1.format(date);
+                    String dateS = dateFormat2.format(date);
 
                     out.println("<tr>");
                     out.print (
+                        "<td>"+dateS+"</td>"+
                         "<td><A href=\"http://localhost:8081/servlet/Routes1?acode="+    
                         rset.getString("ACODE")+"\">"+rset.getString("ACODE")+"</A>"+"</td>"+
                         "<td>"+dateString+"</td>"+
