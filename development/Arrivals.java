@@ -24,7 +24,7 @@ public class Arrivals extends HttpServlet {
             
                 Statement stmt = conn.createStatement();
                 ResultSet rset = stmt.executeQuery(
-                        "SELECT arrid, gnum, TO_CHAR(arr_t, 'hh24:mm') arr_t, Arrivals.RNUM RNUM, Arrivals.ACODE ACODE, source " +
+                        "SELECT arrid, gnum, TO_CHAR(arr_t, 'yyyy-mm-dd hh24:mm') arr_t, Arrivals.RNUM RNUM, Arrivals.ACODE ACODE, source " +
                         "FROM Arrivals, INCOMING_ROUTES " +
                         "WHERE Arrivals.RNUM = INCOMING_ROUTES.RNUM"
                 );
@@ -85,8 +85,9 @@ public class Arrivals extends HttpServlet {
                         rset.getString("ACODE")+"\">"+rset.getString("ACODE")+"</A>"+"</td>"+
                         "<td>"+dateString+"</td>"+
                         "<td><A href=\"http://localhost:8081/servlet/Routes2?location="+    
-                        rset.getString("source")+"\">"+rset.getString("destination")+"</A>"+"</td>"+
-                        "<td>"+rset.getString("gnum")+"</td>"
+                        rset.getString("source")+"\">"+rset.getString("source")+"</A>"+"</td>"+
+                        "<td>"+rset.getString("gnum")+"</td>"+
+                        "<td>"+ status +"</td>"
                     );
                     out.println("</tr>");
                 }
