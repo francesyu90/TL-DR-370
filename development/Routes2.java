@@ -60,7 +60,7 @@ public class Routes2 extends HttpServlet {
             out.println("<tr>");
             out.println("<th>Route #</th>");
             out.println("<th>Airline Code</th>");
-            out.println("<th>Plane Model</th>");
+            out.println("<th>Aircraft</th>");
             out.println("<th>Planned Time</th>");
             out.println("</tr>");
             out.println("</thead>");

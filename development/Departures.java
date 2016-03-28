@@ -3,11 +3,17 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+
 public class Departures extends HttpServlet {
     void processRequest(HttpServletRequest request, HttpServletResponse response)  						throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-	   String year = request.getParameter("year");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        DateFormat dateFormat1 = new SimpleDateFormat("HH:mm");
         
         Connection conn = ConnectionManager.getInstance().getConnection();
         try { 
@@ -55,21 +61,29 @@ public class Departures extends HttpServlet {
                 out.println("<tr>");
                 out.println("<th>Airline Code</th>");
                 out.println("<th>Departure Time</th>");
-                out.println("<th>Destination</th>");
+                out.println("<th>To</th>");
                 out.println("<th>Gate #</th>");
+                out.println("<th>Status</th>");
                 out.println("</tr>");
                 out.println("</thead>");
                 out.println("<tbody>");
         		while (rset.next()) {
 
+                    Date date = dateFormat.parse(rset.getString("dep_t"));
+                    Date currDate = new Date();
+                    String status = (currDate.before(date))?"Scheduled":"Departed";
+                    String dateString = dateFormat1.format(date);
+
+
         			out.println("<tr>");
         			out.print (
                         "<td><A href=\"http://localhost:8081/servlet/Routes1?acode="+    
                         rset.getString("ACODE")+"\">"+rset.getString("ACODE")+"</A>"+"</td>"+
-                        "<td>"+rset.getString("dep_t")+"</td>"+
+                        "<td>"+dateString+"</td>"+
                         "<td><A href=\"http://localhost:8081/servlet/Routes2?location="+    
                         rset.getString("destination")+"\">"+rset.getString("destination")+"</A>"+"</td>"+
-                        "<td>"+rset.getString("gnum")+"</td>"
+                        "<td>"+rset.getString("gnum")+"</td>"+
+                         "<td>"+ status +"</td>"
                     );
         			out.println("</tr>");
         		}
@@ -84,7 +98,7 @@ public class Departures extends HttpServlet {
 
 
 
-            catch(SQLException e) { out.println(e); }        
+            catch(Exception e) { out.println(e); }        
             ConnectionManager.getInstance().returnConnection(conn);
         }
        protected void doGet(HttpServletRequest request, HttpServletResponse response)

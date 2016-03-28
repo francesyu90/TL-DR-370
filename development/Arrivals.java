@@ -3,17 +3,28 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+
 public class Arrivals extends HttpServlet {
     void processRequest(HttpServletRequest request, HttpServletResponse response)                       throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-       String year = request.getParameter("year");
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        DateFormat dateFormat1 = new SimpleDateFormat("HH:mm");
+
+       
         
         Connection conn = ConnectionManager.getInstance().getConnection();
         try { 
+
+            
                 Statement stmt = conn.createStatement();
                 ResultSet rset = stmt.executeQuery(
-                        "SELECT arrid, gnum, TO_CHAR(arr_t, 'yyyy-mm-dd hh24:mm') arr_t, Arrivals.RNUM RNUM, Arrivals.ACODE ACODE, source " +
+                        "SELECT arrid, gnum, TO_CHAR(arr_t, 'hh24:mm') arr_t, Arrivals.RNUM RNUM, Arrivals.ACODE ACODE, source " +
                         "FROM Arrivals, INCOMING_ROUTES " +
                         "WHERE Arrivals.RNUM = INCOMING_ROUTES.RNUM"
                 );
@@ -55,18 +66,24 @@ public class Arrivals extends HttpServlet {
                 out.println("<tr>");
                 out.println("<th>Airline Code</th>");
                 out.println("<th>Arrival Time</th>");
-                out.println("<th>Source</th>");
+                out.println("<th>From</th>");
                 out.println("<th>Gate #</th>");
+                out.println("<th>Status</th>");
                 out.println("</tr>");
                 out.println("</thead>");
                 out.println("<tbody>");
                 while (rset.next()) {
 
+                    Date date = dateFormat.parse(rset.getString("arr_t"));
+                    Date currDate = new Date();
+                    String status = (currDate.before(date))?"Scheduled":"Landed";
+                    String dateString = dateFormat1.format(date);
+
                     out.println("<tr>");
                     out.print (
                         "<td><A href=\"http://localhost:8081/servlet/Routes1?acode="+    
                         rset.getString("ACODE")+"\">"+rset.getString("ACODE")+"</A>"+"</td>"+
-                        "<td>"+rset.getString("arr_t")+"</td>"+
+                        "<td>"+dateString+"</td>"+
                         "<td><A href=\"http://localhost:8081/servlet/Routes2?location="+    
                         rset.getString("source")+"\">"+rset.getString("destination")+"</A>"+"</td>"+
                         "<td>"+rset.getString("gnum")+"</td>"
@@ -79,12 +96,11 @@ public class Arrivals extends HttpServlet {
                 out.println("</BODY>");
                 out.println("</HTML>");
                 // out.close();
-                stmt.close();
-        }
+               stmt.close();
+        //  } catch(ParseException err) { out.println(err); 
+        // } catch(SQLException e) { out.println(e); }    
 
-
-
-            catch(SQLException e) { out.println(e); }        
+        } catch(Exception e) { out.println(e); }       
             ConnectionManager.getInstance().returnConnection(conn);
         }
        protected void doGet(HttpServletRequest request, HttpServletResponse response)

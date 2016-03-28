@@ -52,8 +52,8 @@ public class OutgoingRoutes extends HttpServlet {
                 out.println("<thead class='thead-inverse'>");
                 out.println("<tr>");
                 out.println("<th>Route #</th>");
-                out.println("<th>Plane Model</th>");
-                out.println("<th>Destination</th>");
+                out.println("<th>Aircraft</th>");
+                out.println("<th>To</th>");
                 out.println("<th>Planned Departure Time</th>");
                 out.println("</tr>");
                 out.println("</thead>");
