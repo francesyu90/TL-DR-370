@@ -21,11 +21,17 @@ public class InsertArrivals extends HttpServlet {
         "INSERT INTO Arrivals(arrid, gnum, arr_t, rnum, acode) " +
         "VALUES( '" + arrId + "','" + gnum + "', TO_DATE('" + dateTimeString + "', 'yyyy-mm-dd hh24:mi'),'" + rnum + "','" + acode + "')";
 
+        String statementString1 = 
+        "UPDATE GATE " +
+        "SET IN_USE = 1 " +
+        "WHERE GNUM = " + gnum; 
+
 
        Connection conn = ConnectionManager.getInstance().getConnection();
         try {
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(statementString);
+            stmt.executeUpdate(statementString1);
             stmt.close();
             out.println("Insertion Successful!");
         }
