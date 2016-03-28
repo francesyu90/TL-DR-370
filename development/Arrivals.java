@@ -16,6 +16,8 @@ public class Arrivals extends HttpServlet {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         DateFormat dateFormat1 = new SimpleDateFormat("HH:mm");
         DateFormat dateFormat2 = new SimpleDateFormat("dd MMM");
+        DateFormat dateFormat3 = new SimpleDateFormat("dd MMM, yyyy");
+        Date currDate = new Date();
        
         
         Connection conn = ConnectionManager.getInstance().getConnection();
@@ -24,7 +26,7 @@ public class Arrivals extends HttpServlet {
             
                 Statement stmt = conn.createStatement();
                 ResultSet rset = stmt.executeQuery(
-                        "SELECT arrid, gnum, TO_CHAR(arr_t, 'yyyy-mm-dd hh24:mm') arr_t, Arrivals.RNUM RNUM, Arrivals.ACODE ACODE, source " +
+                        "SELECT arrid, gnum, TO_CHAR(arr_t, 'yyyy-mm-dd hh24:mi') arr_t, Arrivals.RNUM RNUM, Arrivals.ACODE ACODE, source " +
                         "FROM Arrivals, INCOMING_ROUTES " +
                         "WHERE Arrivals.RNUM = INCOMING_ROUTES.RNUM"
                 );
@@ -76,10 +78,9 @@ public class Arrivals extends HttpServlet {
                 while (rset.next()) {
 
                     Date date = dateFormat.parse(rset.getString("arr_t"));
-                    Date currDate = new Date();
                     String status = (currDate.before(date))?"Scheduled":"Landed";
                     String dateString = dateFormat1.format(date);
-                    String dateS = dateFormat2.format(date);
+                    String dateS = (currDate.before(date))?dateFormat3.format(date):dateFormat2.format(date);
 
                     out.println("<tr>");
                     out.print (

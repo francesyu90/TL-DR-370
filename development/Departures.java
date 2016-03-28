@@ -15,12 +15,14 @@ public class Departures extends HttpServlet {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         DateFormat dateFormat1 = new SimpleDateFormat("HH:mm");
         DateFormat dateFormat2 = new SimpleDateFormat("dd MMM");
+        DateFormat dateFormat3 = new SimpleDateFormat("dd MMM, yyyy");
+        Date currDate = new Date();
         
         Connection conn = ConnectionManager.getInstance().getConnection();
         try { 
                 Statement stmt = conn.createStatement();
                 ResultSet rset = stmt.executeQuery(
-                        "SELECT depid, gnum, TO_CHAR(dep_t, 'yyyy-mm-dd hh24:mm') dep_t, Departures.RNUM RNUM, Departures.ACODE ACODE, destination " +
+                        "SELECT depid, gnum, TO_CHAR(dep_t, 'yyyy-mm-dd hh24:mi') dep_t, Departures.RNUM RNUM, Departures.ACODE ACODE, destination " +
                         "FROM Departures, OUTGOING_ROUTES " +
                         "WHERE DEPARTURES.RNUM = OUTGOING_ROUTES.RNUM"
                 );
@@ -72,10 +74,9 @@ public class Departures extends HttpServlet {
         		while (rset.next()) {
 
                     Date date = dateFormat.parse(rset.getString("dep_t"));
-                    Date currDate = new Date();
                     String status = (currDate.before(date))?"Scheduled":"Departed";
                     String dateString = dateFormat1.format(date);
-                    String dateS = dateFormat2.format(date);
+                    String dateS = (currDate.before(date))?dateFormat3.format(date):dateFormat2.format(date);
 
 
         			out.println("<tr>");
