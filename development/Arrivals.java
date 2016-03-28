@@ -56,7 +56,7 @@ public class Arrivals extends HttpServlet {
                 out.println("</ul>");
                 out.println("</nav>");
                 out.println("<div class='paddingTop'>");
-                out.println("<a href='../insertDepartures.html' class='btn btn-info floatRight' role='button'>Insert New Departure</a>");
+                out.println("<a href='../insertArrivals.html' class='btn btn-info floatRight' role='button'>Insert New Arrival</a>");
                 out.println("<br>");
                 out.println("<h3>Arrivals");
                 out.println("</h3>");
