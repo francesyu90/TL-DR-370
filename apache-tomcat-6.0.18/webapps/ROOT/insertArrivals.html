@@ -30,7 +30,7 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <div class="paddingTop">
+    <div class="paddingTop marginBottom">
       <div class="center">
         <h3>Insert Arrival Data</h3>
         <form method="post" role="form" class="center" action="http://localhost:8081/servlet/InsertArrivals" >
@@ -43,8 +43,12 @@
             <input type="number" id="gnum" name="gnum" class="form-control"></input>
           </div> 
           <div class="form-group">
-            <label for="arrT">Arrival Time </label>
-            <input type="datetime" id="arrT" name="arrT" class="form-control" placeholder="2016-03-01 13:00"></input>
+            <label for="adate">Arrival Date </label>
+            <input type="date" id="adate" name="adate" class="form-control"></input>
+          </div>
+          <div class="form-group">
+            <label for="atime">Arrival Time</label>
+            <input type="time" id="atime" name="atime" class="form-control"></input>
           </div>
           <div class="form-group">
             <label for="rnum"> Route # </label>

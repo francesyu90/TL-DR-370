@@ -30,7 +30,7 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <div class="paddingTop">
+    <div class="paddingTop marginBottom">
       <div class="center">
         <h3>Insert Departure Data</h3>
         <form method="post" role="form" class="center" action="http://localhost:8081/servlet/InsertDepartures" >
@@ -43,8 +43,12 @@
             <input type="number" id="gnum" name="gnum" class="form-control"></input>
           </div> 
           <div class="form-group">
-            <label for="depT">Departure Time </label>
-            <input type="datetime" id="depT" name="depT" class="form-control" placeholder="2016-03-01 13:00"></input>
+            <label for="ddate">Departure Date</label>
+            <input type="date" id="ddate" name="ddate" class="form-control"></input>
+          </div>
+          <div class="form-group">
+            <label for="dtime">Departure Time</label>
+            <input type="time" id="dtime" name="dtime" class="form-control"></input>
           </div>
           <div class="form-group">
             <label for="rnum"> Route # </label>

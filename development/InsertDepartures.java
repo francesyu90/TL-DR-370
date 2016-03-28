@@ -13,13 +13,13 @@ public class InsertDepartures extends HttpServlet {
 
         String depId = request.getParameter("depId");
         String gnum = request.getParameter("gnum");
-        String depT = request.getParameter("depT");
+        String dateTimeString = request.getParameter("ddate") + " " + request.getParameter("dtime");
         String rnum = request.getParameter("rnum");
         String acode = request.getParameter("acode");
 
         String statementString = 
         "INSERT INTO Departures(depid, gnum, dep_t, rnum, acode) " +
-        "VALUES( '" + depId + "','" + gnum + "', TO_DATE('" + depT + "', 'yyyy-mm-dd hh24:mi'),'" + rnum + "','" + acode + "')";
+        "VALUES( '" + depId + "','" + gnum + "', TO_DATE('" + dateTimeString + "', 'yyyy-mm-dd hh24:mi'),'" + rnum + "','" + acode + "')";
 
 
        Connection conn = ConnectionManager.getInstance().getConnection();

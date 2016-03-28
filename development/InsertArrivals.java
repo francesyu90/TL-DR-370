@@ -13,13 +13,13 @@ public class InsertArrivals extends HttpServlet {
 
         String arrId = request.getParameter("arrId");
         String gnum = request.getParameter("gnum");
-        String arrT = request.getParameter("arrT");
+        String dateTimeString = request.getParameter("adate") + " " + request.getParameter("atime");
         String rnum = request.getParameter("rnum");
         String acode = request.getParameter("acode");
 
         String statementString = 
         "INSERT INTO Arrivals(arrid, gnum, arr_t, rnum, acode) " +
-        "VALUES( '" + arrId + "','" + gnum + "', TO_DATE('" + arrT + "', 'yyyy-mm-dd hh24:mi'),'" + rnum + "','" + acode + "')";
+        "VALUES( '" + arrId + "','" + gnum + "', TO_DATE('" + dateTimeString + "', 'yyyy-mm-dd hh24:mi'),'" + rnum + "','" + acode + "')";
 
 
        Connection conn = ConnectionManager.getInstance().getConnection();
