@@ -17,7 +17,7 @@ public class IncomingRoutes extends HttpServlet {
                 //         "FROM Routes, Incoming_Routes WHERE Routes.rnum = Incoming_Routes.rnum");
 
                 ResultSet rset = stmt.executeQuery(
-                        "SELECT Routes.rnum, plane_model, source, to_char(in_t, 'hh24:mm') in_t " +
+                        "SELECT Routes.rnum, plane_model, source, to_char(in_t, 'hh24:mi') in_t " +
                         "FROM Routes, Incoming_Routes WHERE Routes.rnum = Incoming_Routes.rnum");
 
                 out.println("<HTML>");
