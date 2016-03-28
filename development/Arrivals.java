@@ -13,8 +13,10 @@ public class Arrivals extends HttpServlet {
         try { 
                 Statement stmt = conn.createStatement();
                 ResultSet rset = stmt.executeQuery(
-                        "SELECT arrid, gnum, arr_t, rnum, acode " +
-                        "FROM Arrivals");
+                        "SELECT arrid, gnum, TO_CHAR(arr_t, 'yyyy-mm-dd hh24:mm') arr_t, Arrivals.RNUM RNUM, Arrivals.ACODE ACODE, source " +
+                        "FROM Arrivals, INCOMING_ROUTES " +
+                        "WHERE Arrivals.RNUM = INCOMING_ROUTES.RNUM"
+                );
 
                 out.println("<HTML>");
                 out.println("<HEAD>");
@@ -43,7 +45,7 @@ public class Arrivals extends HttpServlet {
                 out.println("</ul>");
                 out.println("</nav>");
                 out.println("<div class='paddingTop'>");
-                out.println("<a href='../insertArrivals.html' class='btn btn-info floatRight' role='button'>Insert New Arrival</a>");
+                out.println("<a href='../insertDepartures.html' class='btn btn-info floatRight' role='button'>Insert New Departure</a>");
                 out.println("<br>");
                 out.println("<h3>Arrivals");
                 out.println("</h3>");
@@ -51,11 +53,10 @@ public class Arrivals extends HttpServlet {
                 out.println("<table class='table table-striped table-hover'>");
                 out.println("<thead class='thead-inverse'>");
                 out.println("<tr>");
-                out.println("<th>Arrival ID</th>");
-                out.println("<th>Gate #</th>");
-                out.println("<th>Arrival Time</th>");
-                out.println("<th>Route #</th>");
                 out.println("<th>Airline Code</th>");
+                out.println("<th>Arrival Time</th>");
+                out.println("<th>Source</th>");
+                out.println("<th>Gate #</th>");
                 out.println("</tr>");
                 out.println("</thead>");
                 out.println("<tbody>");
@@ -63,13 +64,14 @@ public class Arrivals extends HttpServlet {
 
                     out.println("<tr>");
                     out.print (
-                        "<td>"+rset.getString("arrid")+"</td>"+
-                        "<td>"+rset.getString("gnum")+"</td>"+
+                        "<td><A href=\"http://localhost:8081/servlet/Routes1?acode="+    
+                        rset.getString("ACODE")+"\">"+rset.getString("ACODE")+"</A>"+"</td>"+
                         "<td>"+rset.getString("arr_t")+"</td>"+
-                        "<td>"+rset.getString("rnum")+"</td>"+
-                        "<td>"+rset.getString("acode")+"</td>"
-                        );
-                        out.println("</tr>");
+                        "<td><A href=\"http://localhost:8081/servlet/Routes2?location="+    
+                        rset.getString("source")+"\">"+rset.getString("destination")+"</A>"+"</td>"+
+                        "<td>"+rset.getString("gnum")+"</td>"
+                    );
+                    out.println("</tr>");
                 }
                 out.println("</tbody>");
                 out.println("</table>"); // end of departures

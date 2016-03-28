@@ -3,23 +3,24 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 
-public class Routes1 extends HttpServlet {
+public class Routes2 extends HttpServlet {
     void processRequest(HttpServletRequest request, HttpServletResponse response)                       throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String acode = request.getParameter("acode");
+        String location = request.getParameter("location");
+        out.println(location);
         
         Connection conn = ConnectionManager.getInstance().getConnection();
         try { 
             Statement stmt = conn.createStatement();
             ResultSet rset = stmt.executeQuery(
-                "SELECT ROUTES.RNUM RNUM, PLANE_MODEL PLMODEL, SOURCE LOCATION, TO_CHAR(IN_T, 'hh24:mm') TIME, ROUTES.ACODE " +
-                "FROM ROUTES, INCOMING_ROUTES " +
-                "WHERE ROUTES.RNUM = INCOMING_ROUTES.RNUM AND ROUTES.ACODE='" + acode + "' " + 
+                "SELECT I.RNUM RNUM, I.ACODE ACODE, SOURCE LOCATION, TO_CHAR(IN_T, 'hh24:mm') TIME, PLANE_MODEL PLMODEL " +
+                "FROM INCOMING_ROUTES I, ROUTES R " +
+                "WHERE I.RNUM = R.RNUM AND SOURCE ='" + location + "' " + 
                 "UNION " +
-                "SELECT ROUTES.RNUM RNUM, PLANE_MODEL PLMODEL, DESTINATION LOCATION, TO_CHAR(OUT_T, 'hh24:mm') TIME, ROUTES.ACODE " +
-                "FROM ROUTES, OUTGOING_ROUTES " +
-                "WHERE ROUTES.RNUM = OUTGOING_ROUTES.RNUM AND ROUTES.ACODE='" + acode + "'"
+                "SELECT O.RNUM RNUM, O.ACODE ACODE, DESTINATION LOCATION, TO_CHAR(OUT_T, 'hh24:mm') TIME, PLANE_MODEL PLMODEL " +
+                "FROM OUTGOING_ROUTES O, ROUTES R " +
+                "WHERE O.RNUM = R.RNUM AND DESTINATION ='" + location + "'"
             );
 
             out.println("<HTML>");
@@ -51,27 +52,26 @@ public class Routes1 extends HttpServlet {
             out.println("<div class='paddingTop'>");
             out.println("<a href='../insertRoutes.html' class='btn btn-info floatRight' role='button'>Insert New Route</a>");
             out.println("<br>");
-            out.println("<h3>Routes with Airline Code " + acode);
+            out.println("<h3>Routes with Location " + location);
             out.println("</h3>");
             out.println("<br>");
             out.println("<table class='table table-striped table-hover'>");
             out.println("<thead class='thead-inverse'>");
             out.println("<tr>");
             out.println("<th>Route #</th>");
+            out.println("<th>Airline Code</th>");
             out.println("<th>Plane Model</th>");
-            out.println("<th>LOCATION</th>");
             out.println("<th>Planned Time</th>");
             out.println("</tr>");
             out.println("</thead>");
             out.println("<tbody>");
             while (rset.next()) {
-
                 out.println("<tr>");
                 out.print (
                     "<td>"+rset.getString("RNUM")+"</td>"+
+                    "<td><A href=\"http://localhost:8081/servlet/Routes1?acode="+    
+                    rset.getString("ACODE")+"\">"+rset.getString("ACODE")+"</A>"+"</td>"+
                     "<td>"+rset.getString("PLMODEL")+"</td>"+
-                    "<td><A href=\"http://localhost:8081/servlet/Routes2?location="+    
-                    rset.getString("LOCATION")+"\">"+rset.getString("LOCATION")+"</A>"+"</td>"+
                     "<td>"+rset.getString("TIME")+"</td>"
                     );
                     out.println("</tr>");

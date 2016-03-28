@@ -68,7 +68,8 @@ public class IncomingRoutes extends HttpServlet {
         			out.print (
         				"<td>"+rset.getString("rnum")+"</td>"+
                         "<td>"+rset.getString("plane_model")+"</td>"+
-                        "<td>"+rset.getString("source")+"</td>"+
+                        "<td><A href=\"http://localhost:8081/servlet/Routes2?location="+    
+                        rset.getString("source")+"\">"+rset.getString("source")+"</A>"+"</td>"+
                         "<td>"+rset.getString("in_t")+"</td>"
                         );
         				out.println("</tr>");

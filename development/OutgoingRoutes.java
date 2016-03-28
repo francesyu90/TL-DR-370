@@ -64,7 +64,8 @@ public class OutgoingRoutes extends HttpServlet {
         			out.print (
         				"<td>"+rset.getString("rnum")+"</td>"+
                         "<td>"+rset.getString("plane_model")+"</td>"+
-                        "<td>"+rset.getString("destination")+"</td>"+
+                        "<td><A href=\"http://localhost:8081/servlet/Routes2?location="+    
+                        rset.getString("destination")+"\">"+rset.getString("destination")+"</A>"+"</td>"+
                         "<td>"+rset.getString("out_t")+"</td>"
                         );
         				out.println("</tr>");

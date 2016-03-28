@@ -13,8 +13,10 @@ public class Departures extends HttpServlet {
         try { 
                 Statement stmt = conn.createStatement();
                 ResultSet rset = stmt.executeQuery(
-                        "SELECT depid, gnum, dep_t, rnum, acode " +
-                        "FROM Departures");
+                        "SELECT depid, gnum, TO_CHAR(dep_t, 'yyyy-mm-dd hh24:mm') dep_t, Departures.RNUM RNUM, Departures.ACODE ACODE, destination " +
+                        "FROM Departures, OUTGOING_ROUTES " +
+                        "WHERE DEPARTURES.RNUM = OUTGOING_ROUTES.RNUM"
+                );
 
                 out.println("<HTML>");
                 out.println("<HEAD>");
@@ -51,11 +53,10 @@ public class Departures extends HttpServlet {
                 out.println("<table class='table table-striped table-hover'>");
                 out.println("<thead class='thead-inverse'>");
                 out.println("<tr>");
-                out.println("<th>Departure ID</th>");
-                out.println("<th>Gate #</th>");
-                out.println("<th>Departure Time</th>");
-                out.println("<th>Route #</th>");
                 out.println("<th>Airline Code</th>");
+                out.println("<th>Departure Time</th>");
+                out.println("<th>Destination</th>");
+                out.println("<th>Gate #</th>");
                 out.println("</tr>");
                 out.println("</thead>");
                 out.println("<tbody>");
@@ -63,13 +64,14 @@ public class Departures extends HttpServlet {
 
         			out.println("<tr>");
         			out.print (
-        				"<td>"+rset.getString("depid")+"</td>"+
-                        "<td>"+rset.getString("gnum")+"</td>"+
+                        "<td><A href=\"http://localhost:8081/servlet/Routes1?acode="+    
+                        rset.getString("ACODE")+"\">"+rset.getString("ACODE")+"</A>"+"</td>"+
                         "<td>"+rset.getString("dep_t")+"</td>"+
-                        "<td>"+rset.getString("rnum")+"</td>"+
-                        "<td>"+rset.getString("acode")+"</td>"
-                        );
-        				out.println("</tr>");
+                        "<td><A href=\"http://localhost:8081/servlet/Routes2?location="+    
+                        rset.getString("destination")+"\">"+rset.getString("destination")+"</A>"+"</td>"+
+                        "<td>"+rset.getString("gnum")+"</td>"
+                    );
+        			out.println("</tr>");
         		}
                 out.println("</tbody>");
         		out.println("</table>"); // end of departures
