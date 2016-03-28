@@ -3,25 +3,36 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.ParseException;
+
 public class Flights extends HttpServlet {
     void processRequest(HttpServletRequest request, HttpServletResponse response)
                         throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
-    String date = request.getParameter("date");
-    String time = request.getParameter("time");
-    String dateTimeString = date + " " + time;
-    out.println(dateTimeString);
+    String dateS = request.getParameter("date");
+    String timeS = request.getParameter("time");
+    String dateTimeString = dateS + " " + timeS;
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         
-    // Connection conn = ConnectionManager.getInstance().getConnection();
-    // try { 
+    Connection conn = ConnectionManager.getInstance().getConnection();
+    try { 
 
+        Date chosenDate = formatter.parse(dateTimeString);
 
-    //     Statement stmt = conn.createStatement();
-    //     ResultSet rset = stmt.executeQuery(
-    //                     "SELECT acode, name, website " +
-    //                     "FROM Airlines");
+        Statement stmt = conn.createStatement();
+        ResultSet rset = stmt.executeQuery(
+                        "SELECT TO_CHAR(DEP_T, 'hh24:mi') TIME, DEPARTURES.ACODE, DESTINATION LOCATION, GNUM " +
+                        "FROM DEPARTURES, OUTGOING_ROUTES " +
+                        "WHERE DEPARTURES.RNUM = OUTGOING_ROUTES.RNUM " +
+                        "UNION " + 
+                        "SELECT TO_CHAR(ARR_T, 'hh24:mi') TIME, ARRIVALS.ACODE, SOURCE LOCATION, GNUM " +
+                        "FROM ARRIVALS, INCOMING_ROUTES " + 
+                        "WHERE ARRIVALS.RNUM = INCOMING_ROUTES.RNUM "
+                    );
       
     //     out.println("<HTML>");
     //     out.println("<HEAD>");
@@ -65,9 +76,9 @@ public class Flights extends HttpServlet {
     //     out.println("</HTML>");
     //     out.close();
     //     // stmt.close();
-    //   }
-    //   catch(SQLException e) { out.println(e); }
-    //   ConnectionManager.getInstance().returnConnection(conn);
+      }
+      catch(Exception e) { out.println(e); }
+      ConnectionManager.getInstance().returnConnection(conn);
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
