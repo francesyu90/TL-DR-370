@@ -14,10 +14,12 @@ public class DelRoutes extends HttpServlet {
         Statement stmt = conn.createStatement();
         ResultSet rset = stmt.executeQuery(
                         "SELECT rnum, acode, source location, to_char(in_t, 'hh24:mi') time " +
-                        "FROM Incoming_Routes " +
+                        "FROM Incoming_Routes " + 
+                        "WHERE rnum > 0 " +
                         "UNION " +
                         "SELECT rnum, acode, destination location, to_char(out_t, 'hh24:mi') time " + 
-                        "FROM Outgoing_Routes");
+                        "FROM Outgoing_Routes " +
+                        "WHERE rnum > 0");
       
         out.println("<HTML>");
         out.println("<HEAD>");

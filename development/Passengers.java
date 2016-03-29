@@ -49,8 +49,8 @@ public class Passengers extends HttpServlet {
                 out.println("<table class='table table-striped table-hover'>");
                 out.println("<thead class='thead-inverse'>");
                 out.println("<tr>");
-                out.println("<th>Passenger ID</th>");
                 out.println("<th>Name</th>");
+                out.println("<th>Passenger ID</th>");
                 out.println("<th>Government Issued ID</th>");
                 out.println("<th>Date of Birth</th>");
                 out.println("<th>Place of Birth</th>");
@@ -63,8 +63,9 @@ public class Passengers extends HttpServlet {
 
         			out.println("<tr>");
         			out.print (
-        				"<td>"+rset.getString("pid")+"</td>"+
                         "<td>"+rset.getString("name")+"</td>"+
+                        "<td><A href=\"http://localhost:8081/servlet/Baggage?pid="+    
+                        rset.getString("pid")+"\">"+rset.getString("pid")+"</A>"+"</td>"+
                         "<td>"+rset.getString("gov_issued_id")+"</td>"+
                         "<td>"+rset.getString("dob")+"</td>"+
                         "<td>"+rset.getString("pob")+"</td>"+
