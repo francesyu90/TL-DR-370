@@ -28,7 +28,7 @@ public class Arrivals extends HttpServlet {
                 ResultSet rset = stmt.executeQuery(
                         "SELECT arrid, gnum, TO_CHAR(arr_t, 'yyyy-mm-dd hh24:mi') arr_t, Arrivals.RNUM RNUM, Arrivals.ACODE ACODE, source " +
                         "FROM Arrivals, INCOMING_ROUTES " +
-                        "WHERE Arrivals.RNUM = INCOMING_ROUTES.RNUM"
+                        "WHERE Arrivals.RNUM = INCOMING_ROUTES.RNUM  AND INCOMING_Routes.rnum > 0"
                 );
 
                 out.println("<HTML>");

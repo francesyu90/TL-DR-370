@@ -24,7 +24,7 @@ public class Departures extends HttpServlet {
                 ResultSet rset = stmt.executeQuery(
                         "SELECT depid, gnum, TO_CHAR(dep_t, 'yyyy-mm-dd hh24:mi') dep_t, Departures.RNUM RNUM, Departures.ACODE ACODE, destination " +
                         "FROM Departures, OUTGOING_ROUTES " +
-                        "WHERE DEPARTURES.RNUM = OUTGOING_ROUTES.RNUM"
+                        "WHERE DEPARTURES.RNUM = OUTGOING_ROUTES.RNUM AND OUTGOING_ROUTES.RNUM > 0"
                 );
 
                 out.println("<HTML>");

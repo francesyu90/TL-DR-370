@@ -1,0 +1,3 @@
+BID WEIGHT PID
+1	15kg	1
+2	23kg	1

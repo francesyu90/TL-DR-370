@@ -14,7 +14,7 @@ public class OutgoingRoutes extends HttpServlet {
                 Statement stmt = conn.createStatement();
                 ResultSet rset = stmt.executeQuery(
                         "SELECT Routes.rnum, plane_model, destination, to_char(out_t, 'hh24:mi') out_t " +
-                        "FROM Routes, Outgoing_Routes WHERE Routes.rnum = Outgoing_Routes.rnum");
+                        "FROM Routes, Outgoing_Routes WHERE Routes.rnum = Outgoing_Routes.rnum AND Routes.rnum > 0");
 
                 out.println("<HTML>");
                 out.println("<HEAD>");
