@@ -18,7 +18,8 @@ public class IncomingRoutes extends HttpServlet {
                 ResultSet rset = stmt.executeQuery(
                         "SELECT Routes.rnum, plane_model, source, to_char(in_t, 'hh24:mi') in_t " +
                         "FROM Routes, Incoming_Routes " +
-                        "WHERE Routes.rnum = Incoming_Routes.rnum AND Routes.rnum > 0");
+                        "WHERE Routes.rnum = Incoming_Routes.rnum AND " + 
+                        "ROUTES.ACODE = INCOMING_ROUTES.ACODE AND Routes.rnum > 0");
                         
 
                 out.println("<HTML>");

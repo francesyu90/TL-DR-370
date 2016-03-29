@@ -5,6 +5,7 @@ import java.sql.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.DateFormat;
 import java.text.ParseException;
 
 public class Flights extends HttpServlet {
@@ -13,25 +14,30 @@ public class Flights extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    DateFormat dateFormat1 = new SimpleDateFormat("HH:mm");
+    DateFormat dateFormat2 = new SimpleDateFormat("dd MMM");
+    DateFormat dateFormat3 = new SimpleDateFormat("dd MMM, yyyy");
+
     String dateS = request.getParameter("date");
     String timeS = request.getParameter("time");
     String dateTimeString = dateS + " " + timeS;
-    // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         
     Connection conn = ConnectionManager.getInstance().getConnection();
     try { 
 
-        // Date chosenDate = formatter.parse(dateTimeString);
+        Date chosenDate = formatter.parse(dateTimeString);
 
         Statement stmtOut = conn.createStatement();
         ResultSet rsetOut = stmtOut.executeQuery(
-                        "SELECT TO_CHAR(DEP_T, 'hh24:mi') TIME, DEPARTURES.ACODE ACODE, DESTINATION LOCATION, GNUM " +
+                        "SELECT TO_CHAR(DEP_T, 'yyyy-MM-dd hh24:mi') DEP_T, DEPARTURES.ACODE ACODE, DESTINATION, GNUM " +
                         "FROM DEPARTURES, OUTGOING_ROUTES " +
                         "WHERE DEPARTURES.RNUM = OUTGOING_ROUTES.RNUM " +
                         "AND 24 * ABS(DEP_T - TO_DATE('" + dateTimeString + "', 'YYYY-MM-DD hh24:mi')) <= 1 ");
         Statement stmt = conn.createStatement();
         ResultSet rset = stmt.executeQuery(
-                        "SELECT TO_CHAR(ARR_T, 'hh24:mi') TIME, ARRIVALS.ACODE ACODE, SOURCE LOCATION, GNUM " +
+                        "SELECT TO_CHAR(ARR_T, 'yyyy-MM-dd hh24:mi') ARR_T, ARRIVALS.ACODE ACODE, SOURCE, GNUM " +
                         "FROM ARRIVALS, INCOMING_ROUTES " + 
                         "WHERE ARRIVALS.RNUM = INCOMING_ROUTES.RNUM " +
                         "AND 24 * ABS(ARR_T - TO_DATE('" + dateTimeString + "', 'YYYY-MM-DD hh24:mi')) <= 1"
@@ -57,7 +63,6 @@ public class Flights extends HttpServlet {
         out.println("<ul class='nav navbar-nav'>");
         out.println("<li><a href='/'>Home</a></li>");
         out.println("<li class='active'><a href='../flights.html'>Flights</a></li>");
-        out.println("<li><a href='http://localhost:8081/servlet/FreeGates'>Free Gates</a></li>");
         out.println("<li><a href='http://localhost:8081/servlet/DelRoutes'>Delete Routes</a></li>");
         out.println("</ul>");
         out.println("</nav>");
@@ -85,17 +90,22 @@ public class Flights extends HttpServlet {
         out.println("<th>Airline Code</th>");
         out.println("<th>Source</th>");
         out.println("<th>Gate #</th>");
+        out.println("<th>Status</th>");
         out.println("</tr>");
         out.println("</thead>");
         out.println("<tbody>");
         while (rset.next()) {
 
+            Date date = dateFormat.parse(rset.getString("ARR_T"));
+            String status = (chosenDate.before(date))?"Scheduled":"Landed";
+
             out.println("<tr>");
             out.print (
-                "<td>"+rset.getString("TIME")+"</td>"+
+                "<td>"+rset.getString("ARR_T")+"</td>"+
                 "<td>"+rset.getString("ACODE")+"</td>"+
-                "<td>"+rset.getString("LOCATION")+"</td>"+
-                "<td>"+rset.getString("GNUM")+"</td>"
+                "<td>"+rset.getString("SOURCE")+"</td>"+
+                "<td>"+rset.getString("GNUM")+"</td>" +
+                "<td>"+ status +"</td>"
                 );
                 out.println("</tr>");
         }
@@ -110,17 +120,22 @@ public class Flights extends HttpServlet {
         out.println("<th>Airline Code</th>");
         out.println("<th>Destination</th>");
         out.println("<th>Gate #</th>");
+        out.println("<th>Status</th>");
         out.println("</tr>");
         out.println("</thead>");
         out.println("<tbody>");
         while (rsetOut.next()) {
 
+            Date date = dateFormat.parse(rset.getString("DEP_T"));
+            String status = (chosenDate.before(date))?"Scheduled":"Departed";
+
             out.println("<tr>");
             out.print (
-                "<td>"+rsetOut.getString("TIME")+"</td>"+
+                "<td>"+rsetOut.getString("DEP_T")+"</td>"+
                 "<td>"+rsetOut.getString("ACODE")+"</td>"+
-                "<td>"+rsetOut.getString("LOCATION")+"</td>"+
-                "<td>"+rsetOut.getString("GNUM")+"</td>"
+                "<td>"+rsetOut.getString("DESTINATION")+"</td>"+
+                "<td>"+rsetOut.getString("GNUM")+"</td>" +
+                "<td>"+ status +"</td>"
                 );
                 out.println("</tr>");
         }

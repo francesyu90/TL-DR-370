@@ -1184,3 +1184,29 @@ Mar 29, 2016 2:34:53 PM org.apache.catalina.core.StandardContext reload
 INFO: Reloading this Context has started
 Mar 29, 2016 2:48:04 PM org.apache.catalina.core.StandardContext reload
 INFO: Reloading this Context has started
+Mar 29, 2016 3:12:05 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 3:19:25 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 3:21:15 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 3:23:05 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 3:25:35 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 3:42:36 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 3:44:36 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 3:47:07 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 3:47:07 PM org.apache.catalina.core.StandardWrapper unload
+INFO: Waiting for 1 instance(s) to be deallocated
+Mar 29, 2016 3:47:08 PM org.apache.catalina.core.StandardWrapper unload
+INFO: Waiting for 1 instance(s) to be deallocated
+Mar 29, 2016 3:47:09 PM org.apache.catalina.core.StandardWrapper unload
+INFO: Waiting for 1 instance(s) to be deallocated
+Mar 29, 2016 3:48:49 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 3:50:29 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started

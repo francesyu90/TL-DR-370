@@ -16,10 +16,12 @@ public class Routes1 extends HttpServlet {
                 "SELECT ROUTES.RNUM RNUM, PLANE_MODEL PLMODEL, SOURCE LOCATION, TO_CHAR(IN_T, 'hh24:mm') TIME, ROUTES.ACODE " +
                 "FROM ROUTES, INCOMING_ROUTES " +
                 "WHERE ROUTES.RNUM = INCOMING_ROUTES.RNUM AND ROUTES.RNUM > 0 AND ROUTES.ACODE ='" + acode + "' " + 
+                "AND ROUTES.ACODE = INCOMING_ROUTES.ACODE " + 
                 "UNION " +
                 "SELECT ROUTES.RNUM RNUM, PLANE_MODEL PLMODEL, DESTINATION LOCATION, TO_CHAR(OUT_T, 'hh24:mm') TIME, ROUTES.ACODE " +
                 "FROM ROUTES, OUTGOING_ROUTES " +
-                "WHERE ROUTES.RNUM = OUTGOING_ROUTES.RNUM AND ROUTES.RNUM > 0 AND ROUTES.ACODE ='" + acode + "'"
+                "WHERE ROUTES.RNUM = OUTGOING_ROUTES.RNUM AND ROUTES.RNUM > 0 AND ROUTES.ACODE ='" + acode + "' " +
+                "AND ROUTES.ACODE = OUTGOING_ROUTES.ACODE "
             );
 
             out.println("<HTML>");
