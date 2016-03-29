@@ -110,3 +110,51 @@ Mar 29, 2016 12:26:27 PM org.apache.catalina.core.ApplicationContext log
 INFO: ContextListener: attributeAdded('org.apache.catalina.Registry', 'org.apache.tomcat.util.modeler.Registry@4883b407')
 Mar 29, 2016 12:26:27 PM org.apache.catalina.core.ApplicationContext log
 INFO: ContextListener: attributeAdded('org.apache.catalina.MBeanServer', 'com.sun.jmx.mbeanserver.JmxMBeanServer@7d9d1a19')
+Mar 29, 2016 12:37:22 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 29, 2016 12:37:22 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 29, 2016 12:37:22 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.catalina.Registry', 'org.apache.tomcat.util.modeler.Registry@6093dd95')
+Mar 29, 2016 12:37:22 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.catalina.MBeanServer', 'com.sun.jmx.mbeanserver.JmxMBeanServer@5622fdf')
+Mar 29, 2016 12:37:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 29, 2016 12:37:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+Mar 29, 2016 12:37:30 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 29, 2016 12:37:30 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 29, 2016 12:37:30 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.catalina.Registry', 'org.apache.tomcat.util.modeler.Registry@39c0f4a')
+Mar 29, 2016 12:37:30 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.catalina.MBeanServer', 'com.sun.jmx.mbeanserver.JmxMBeanServer@1794d431')
+Mar 29, 2016 12:37:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 29, 2016 12:37:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+Mar 29, 2016 12:38:31 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 29, 2016 12:38:31 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 29, 2016 12:38:31 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.catalina.Registry', 'org.apache.tomcat.util.modeler.Registry@39c0f4a')
+Mar 29, 2016 12:38:31 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.catalina.MBeanServer', 'com.sun.jmx.mbeanserver.JmxMBeanServer@1794d431')
+Mar 29, 2016 12:38:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 29, 2016 12:38:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+Mar 29, 2016 12:44:47 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 29, 2016 12:44:47 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 29, 2016 12:44:47 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.catalina.Registry', 'org.apache.tomcat.util.modeler.Registry@39c0f4a')
+Mar 29, 2016 12:44:47 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.catalina.MBeanServer', 'com.sun.jmx.mbeanserver.JmxMBeanServer@1794d431')
+Mar 29, 2016 12:44:48 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 29, 2016 12:44:48 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()

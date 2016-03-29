@@ -23,13 +23,14 @@ public class Flights extends HttpServlet {
 
         // Date chosenDate = formatter.parse(dateTimeString);
 
-        Statement stmt = conn.createStatement();
-        ResultSet rset = stmt.executeQuery(
+        Statement stmtOut = conn.createStatement();
+        ResultSet rsetOut = stmtOut.executeQuery(
                         "SELECT TO_CHAR(DEP_T, 'hh24:mi') TIME, DEPARTURES.ACODE ACODE, DESTINATION LOCATION, GNUM " +
                         "FROM DEPARTURES, OUTGOING_ROUTES " +
                         "WHERE DEPARTURES.RNUM = OUTGOING_ROUTES.RNUM " +
-                        "AND 24 * ABS(DEP_T - TO_DATE('" + dateTimeString + "', 'YYYY-MM-DD hh24:mi')) <= 1 " +
-                         "UNION " + 
+                        "AND 24 * ABS(DEP_T - TO_DATE('" + dateTimeString + "', 'YYYY-MM-DD hh24:mi')) <= 1 ");
+        Statement stmt = conn.createStatement();
+        ResultSet rset = stmt.executeQuery(
                         "SELECT TO_CHAR(ARR_T, 'hh24:mi') TIME, ARRIVALS.ACODE ACODE, SOURCE LOCATION, GNUM " +
                         "FROM ARRIVALS, INCOMING_ROUTES " + 
                         "WHERE ARRIVALS.RNUM = INCOMING_ROUTES.RNUM " +
@@ -67,19 +68,22 @@ public class Flights extends HttpServlet {
     
         */
 
+        out.println("<div class='page-header'>");
+        out.println("<h2> Chosen date & time: " + dateS + " " + timeS);
+        out.println("</h2>");
+        out.println("</div>");
         out.println("<br>");
-        out.println("<h3>");
-        out.println("Chosen date & time: " + dateS + " "+ timeS);
-        out.println("</h3>");
+        // out.println("<h2>");
+        // out.println("Chosen date & time: " + dateS + " "+ timeS);
+        // out.println("</h2>");
         out.println("<br>");
-
-
         out.println("<table class='table table-striped table-hover'>");
+        out.println("<caption>ARRIVALS</caption>");
         out.println("<thead class='thead-inverse'>");
         out.println("<tr>");
         out.println("<th>Time</th>");
         out.println("<th>Airline Code</th>");
-        out.println("<th>Location</th>");
+        out.println("<th>Source</th>");
         out.println("<th>Gate #</th>");
         out.println("</tr>");
         out.println("</thead>");
@@ -92,6 +96,31 @@ public class Flights extends HttpServlet {
                 "<td>"+rset.getString("ACODE")+"</td>"+
                 "<td>"+rset.getString("LOCATION")+"</td>"+
                 "<td>"+rset.getString("GNUM")+"</td>"
+                );
+                out.println("</tr>");
+        }
+        out.println("</tbody>");
+        out.println("</table>"); // end of table
+
+        out.println("<table class='table table-striped table-hover'>");
+        out.println("<caption>DEPARTURES</caption>");
+        out.println("<thead class='thead-inverse'>");
+        out.println("<tr>");
+        out.println("<th>Time</th>");
+        out.println("<th>Airline Code</th>");
+        out.println("<th>Destination</th>");
+        out.println("<th>Gate #</th>");
+        out.println("</tr>");
+        out.println("</thead>");
+        out.println("<tbody>");
+        while (rsetOut.next()) {
+
+            out.println("<tr>");
+            out.print (
+                "<td>"+rsetOut.getString("TIME")+"</td>"+
+                "<td>"+rsetOut.getString("ACODE")+"</td>"+
+                "<td>"+rsetOut.getString("LOCATION")+"</td>"+
+                "<td>"+rsetOut.getString("GNUM")+"</td>"
                 );
                 out.println("</tr>");
         }
