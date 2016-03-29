@@ -12,6 +12,8 @@ public class Test3 extends HttpServlet {
         
         PrintWriter out = response.getWriter();
 
+        Queue<String> executeStatements = new LinkedList<String>();
+
         try {
 
             String filename = "/WEB-INF/classes/pnr.txt";
@@ -33,37 +35,43 @@ public class Test3 extends HttpServlet {
                 //
                 reader.readLine();
                 while ((text = reader.readLine()) != null) {
-                    writer.println(text);
-                    out.println("<br>");
                     Scanner sc = new Scanner(text);
-                    while(sc.hasNext()){
-                        out.println(sc.next() + "<br>");
-                    }
+                    String pid = sc.next();
+                    String name = sc.next() + " " + sc.next();
+                    String gid = sc.next();
+                    String dob = sc.next();
+                    String pob = sc.next() + " " + sc.next();
+                    String depid = sc.next();
+                    String arrid = sc.next();
+                    String executeStatement = 
+                    "INSERT INTO Passengers(PID, NAME, GOV_ISSUED_ID, DOB, POB, DEPID, ARRID) VALUES(" +
+                    pid + ", '" + name + "', " + gid + ", " + 
+                    "TO_DATE('" + dob + "', 'yyyy-MM-dd'), '" +  pob + "', " + depid + ", " + arrid + ")";
+                    executeStatements.add(executeStatement);
                 }
             }
 
+            String[] executeStatementsArr = executeStatements.toArray(new String[0]);
 
-            } catch(Exception e) {
-                out.println(e);
+            Connection conn = ConnectionManager.getInstance().getConnection();
+            try {
+                Statement stmt = conn.createStatement();
+
+                for(int i = 0; i < executeStatementsArr.length; i++){
+                    stmt.executeUpdate(executeStatementsArr[i]);
+                }
+                stmt.close();
+                out.println("Insertion Successful!");
             }
-        
-       //  String acode = request.getParameter("acode");
-       //  String aname = request.getParameter("aname");
-       //  String awebsite = request.getParameter("awebsite");
+            catch(SQLException e) { out.println(e); }
+            ConnectionManager.getInstance().returnConnection(conn);
+            
 
-       //  String statementString = 
-       //  "INSERT INTO Airlines(acode, name, website) " +
-       //  "VALUES( '" + acode + "','" + aname + "','" + awebsite + "')";
 
-       // Connection conn = ConnectionManager.getInstance().getConnection();
-       //  try {
-       //      Statement stmt = conn.createStatement();
-       //      stmt.executeUpdate(statementString);
-       //      stmt.close();
-       //      out.println("Insertion Successful!");
-       //  }
-       //  catch(SQLException e) { out.println(e); }
-       //  ConnectionManager.getInstance().returnConnection(conn);
+
+        } catch(Exception e) {
+            out.println(e);
+        }
 
     }
 
