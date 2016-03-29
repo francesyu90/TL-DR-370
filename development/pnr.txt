@@ -1,0 +1,2 @@
+PID		Name			Gov_Issued_ID	DOB			POB				DEPID	ARRID
+1	    Anna Trepke		1234562			1980-10-31	Paris, France	0		1

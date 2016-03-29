@@ -11,7 +11,7 @@ public class Passengers extends HttpServlet {
         Connection conn = ConnectionManager.getInstance().getConnection();
         try { Statement stmt = conn.createStatement();
                ResultSet rset = stmt.executeQuery(
-                        "SELECT pid, name, gov_issued_id, dob, pob, depid, arrid " +
+                        "SELECT pid, name, gov_issued_id, to_char(dob, 'yyyy-MM-dd') dob, pob, depid, arrid " +
                         "FROM Passengers ");
 
                 out.println("<HTML>");
