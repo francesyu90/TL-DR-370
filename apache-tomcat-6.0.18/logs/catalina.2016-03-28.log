@@ -11341,3 +11341,55 @@ Mar 28, 2016 7:02:28 PM org.apache.coyote.http11.Http11Protocol destroy
 INFO: Stopping Coyote HTTP/1.1 on http-8081
 Mar 28, 2016 7:02:28 PM org.apache.catalina.connector.Connector stop
 SEVERE: Coyote connector has not been started
+Mar 28, 2016 8:50:57 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /Users/frances/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+Mar 28, 2016 8:50:57 PM org.apache.coyote.http11.Http11Protocol init
+INFO: Initializing Coyote HTTP/1.1 on http-8081
+Mar 28, 2016 8:50:57 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 349 ms
+Mar 28, 2016 8:50:57 PM org.apache.catalina.core.StandardService start
+INFO: Starting service Catalina
+Mar 28, 2016 8:50:57 PM org.apache.catalina.core.StandardEngine start
+INFO: Starting Servlet Engine: Apache Tomcat/6.0.18
+Mar 28, 2016 8:50:58 PM org.apache.coyote.http11.Http11Protocol start
+INFO: Starting Coyote HTTP/1.1 on http-8081
+Mar 28, 2016 8:50:58 PM org.apache.jk.common.ChannelSocket init
+INFO: JK: ajp13 listening on /0.0.0.0:8009
+Mar 28, 2016 8:50:58 PM org.apache.jk.server.JkMain start
+INFO: Jk running ID=0 time=0/20  config=null
+Mar 28, 2016 8:50:58 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 638 ms
+Mar 28, 2016 8:59:58 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:00:48 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:01:38 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:02:29 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:05:09 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:06:29 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:10:49 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:14:59 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:14:59 PM org.apache.catalina.core.StandardWrapper unload
+INFO: Waiting for 1 instance(s) to be deallocated
+Mar 28, 2016 9:17:50 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:19:40 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:20:10 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:20:50 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:21:50 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:24:41 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:27:21 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 28, 2016 9:28:11 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started

@@ -64,6 +64,7 @@ public class Departures extends HttpServlet {
                 out.println("<tr>");
                 out.println("<th>Date</th>");
                 out.println("<th>Airline Code</th>");
+                out.println("<th>Departure ID</th>");
                 out.println("<th>Departure Time</th>");
                 out.println("<th>To</th>");
                 out.println("<th>Gate #</th>");
@@ -84,6 +85,8 @@ public class Departures extends HttpServlet {
                         "<td>"+dateS+"</td>"+
                         "<td><A href=\"http://localhost:8081/servlet/Routes1?acode="+    
                         rset.getString("ACODE")+"\">"+rset.getString("ACODE")+"</A>"+"</td>"+
+                        "<td><A href=\"http://localhost:8081/servlet/Departures1?depid="+    
+                        rset.getString("depid")+"\">"+rset.getString("depid")+"</A>"+"</td>"+
                         "<td>"+dateString+"</td>"+
                         "<td><A href=\"http://localhost:8081/servlet/Routes2?location="+    
                         rset.getString("destination")+"\">"+rset.getString("destination")+"</A>"+"</td>"+
