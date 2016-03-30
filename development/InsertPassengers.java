@@ -44,7 +44,7 @@ public class InsertPassengers extends HttpServlet {
                     String depid = sc.next();
                     String arrid = sc.next();
                     String executeStatement = 
-                    "INSERT INTO Passengers(PID, NAME, GOV_ISSUED_ID, DOB, POB, DEPID, ARRID) VALUES(" +
+                    "INSERT INTO PassengersV(PID, NAME, GOV_ISSUED_ID, DOB, POB, DEPID, ARRID) VALUES(" +
                     pid + ", '" + name + "', " + gid + ", " + 
                     "TO_DATE('" + dob + "', 'yyyy-MM-dd'), '" +  pob + "', " + depid + ", " + arrid + ")";
                     executeStatements.add(executeStatement);
