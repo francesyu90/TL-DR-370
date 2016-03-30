@@ -29,19 +29,20 @@ public class Flights extends HttpServlet {
 
         Date chosenDate = formatter.parse(dateTimeString);
 
-        Statement stmtOut = conn.createStatement();
-        ResultSet rsetOut = stmtOut.executeQuery(
-                        "SELECT TO_CHAR(DEP_T, 'yyyy-MM-dd hh24:mi') DEP_T, DEPARTURES.ACODE ACODE, DESTINATION, GNUM " +
-                        "FROM DEPARTURES, OUTGOING_ROUTES " +
-                        "WHERE DEPARTURES.RNUM = OUTGOING_ROUTES.RNUM " +
-                        "AND 24 * ABS(DEP_T - TO_DATE('" + dateTimeString + "', 'YYYY-MM-DD hh24:mi')) <= 1 ");
+       
         Statement stmt = conn.createStatement();
         ResultSet rset = stmt.executeQuery(
-                        "SELECT TO_CHAR(ARR_T, 'yyyy-MM-dd hh24:mi') ARR_T, ARRIVALS.ACODE ACODE, SOURCE, GNUM " +
+                        "SELECT TO_CHAR(ARR_T, 'yyyy-MM-dd hh24:mi') ARR_T, ARRIVALS.ACODE AACODE, SOURCE, GNUM AGNUM " +
                         "FROM ARRIVALS, INCOMING_ROUTES " + 
                         "WHERE ARRIVALS.RNUM = INCOMING_ROUTES.RNUM " +
                         "AND 24 * ABS(ARR_T - TO_DATE('" + dateTimeString + "', 'YYYY-MM-DD hh24:mi')) <= 1"
                     );
+        Statement stmtOut = conn.createStatement();
+        ResultSet rsetOut = stmtOut.executeQuery(
+                        "SELECT TO_CHAR(DEP_T, 'yyyy-MM-dd hh24:mi') DEP_T, DEPARTURES.ACODE DACODE, DESTINATION, GNUM DGNUM " +
+                        "FROM DEPARTURES, OUTGOING_ROUTES " +
+                        "WHERE DEPARTURES.RNUM = OUTGOING_ROUTES.RNUM " +
+                        "AND 24 * ABS(DEP_T - TO_DATE('" + dateTimeString + "', 'YYYY-MM-DD hh24:mi')) <= 1 ");
       
         out.println("<HTML>");
         out.println("<HEAD>");
@@ -102,9 +103,9 @@ public class Flights extends HttpServlet {
             out.println("<tr>");
             out.print (
                 "<td>"+rset.getString("ARR_T")+"</td>"+
-                "<td>"+rset.getString("ACODE")+"</td>"+
+                "<td>"+rset.getString("AACODE")+"</td>"+
                 "<td>"+rset.getString("SOURCE")+"</td>"+
-                "<td>"+rset.getString("GNUM")+"</td>" +
+                "<td>"+rset.getString("AGNUM")+"</td>" +
                 "<td>"+ status +"</td>"
                 );
                 out.println("</tr>");
@@ -132,9 +133,9 @@ public class Flights extends HttpServlet {
             out.println("<tr>");
             out.print (
                 "<td>"+rsetOut.getString("DEP_T")+"</td>"+
-                "<td>"+rsetOut.getString("ACODE")+"</td>"+
+                "<td>"+rsetOut.getString("DACODE")+"</td>"+
                 "<td>"+rsetOut.getString("DESTINATION")+"</td>"+
-                "<td>"+rsetOut.getString("GNUM")+"</td>" +
+                "<td>"+rsetOut.getString("DGNUM")+"</td>" +
                 "<td>"+ status +"</td>"
                 );
                 out.println("</tr>");

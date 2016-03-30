@@ -1383,3 +1383,23 @@ Mar 29, 2016 9:46:12 PM org.apache.catalina.connector.Connector stop
 SEVERE: Coyote connector has not been started
 Mar 29, 2016 9:46:40 PM org.apache.catalina.core.StandardContext reload
 INFO: Reloading this Context has started
+Mar 29, 2016 9:58:01 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 9:58:41 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 10:00:21 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 10:02:21 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 10:04:02 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 10:08:32 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 10:09:22 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 10:11:22 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 10:18:43 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 29, 2016 10:21:53 PM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
