@@ -65,6 +65,7 @@ public class Flights extends HttpServlet {
         out.println("<li><a href='/'>Home</a></li>");
         out.println("<li class='active'><a href='../flights.html'>Flights</a></li>");
         out.println("<li><a href='http://localhost:8081/servlet/DelRoutes'>Delete Routes</a></li>");
+        out.println("<li><a href='http://localhost:8081/servlet/AdvancedSearch'>Advanced Search</a></li>");
         out.println("</ul>");
         out.println("</nav>");
         out.println("<div class='paddingTop'>");

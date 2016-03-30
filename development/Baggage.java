@@ -48,7 +48,7 @@ public class Baggage extends HttpServlet {
                 out.println("<div class='paddingTop'>");
                 // out.println("<a href='../insertAirlines.html' class='btn btn-info floatRight' role='button'>Insert New Airline</a>");
            		out.println("<br>");
-                out.println("<h3> Baggages with Passenger ID " + pid);
+                out.println("<h3>Passenger ID " + pid);
                 out.println("</h3>");
                 out.println("<br>");
                 out.println("<table class='table table-striped table-hover'>");

@@ -44,9 +44,7 @@ public class DelRoutes extends HttpServlet {
         out.println("<li><a href='/'>Home</a></li>");
         out.println("<li><a href='../flights.html'>Flights</a></li>");
         out.println("<li class='active'><a href='http://localhost:8081/servlet/DelRoutes'>Delete Routes</a></li>");
-        // out.println("<li><a href='http://localhost:8081/servlet/Departures'>Departures</a></li>");
-        // out.println("<li><a href='http://localhost:8081/servlet/Arrivals'>Arrivals</a></li>");
-        // out.println("<li><a href='http://localhost:8081/servlet/Passengers'>Passengers</a></li>");
+        out.println("<li><a href='http://localhost:8081/servlet/AdvancedSearch'>Advanced Search</a></li>");
         out.println("</ul>");
         out.println("<ul class='nav navbar-nav navbar-right'>");
         out.println("<li>");

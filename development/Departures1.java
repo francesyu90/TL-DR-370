@@ -45,7 +45,7 @@ public class Departures1 extends HttpServlet {
             out.println("</nav>");
             out.println("<div class='paddingTop'>");
             out.println("<br>");
-            out.println("<h3>Passengers with Departure ID " + depid);
+            out.println("<h3>Departure ID " + depid);
             out.println("</h3>");
             out.println("<br>");
             out.println("<table class='table table-striped table-hover'>");

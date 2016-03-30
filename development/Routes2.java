@@ -54,7 +54,7 @@ public class Routes2 extends HttpServlet {
             out.println("<div class='paddingTop'>");
             out.println("<a href='../insertRoutes.html' class='btn btn-info floatRight' role='button'>Insert New Route</a>");
             out.println("<br>");
-            out.println("<h3>Routes with Location " + location);
+            out.println("<h3>Location " + location);
             out.println("</h3>");
             out.println("<br>");
             out.println("<table class='table table-striped table-hover'>");
