@@ -32,17 +32,12 @@ public class Flights extends HttpServlet {
        
         Statement stmt = conn.createStatement();
         ResultSet rset = stmt.executeQuery(
-                        "SELECT TO_CHAR(ARR_T, 'yyyy-MM-dd hh24:mi') ARR_T, ARRIVALS.ACODE AACODE, SOURCE, GNUM AGNUM " +
+                        "SELECT TO_CHAR(ARR_T, 'yyyy-MM-dd hh24:mi') ARR_T, ARRIVALS.ACODE ACODE, SOURCE, GNUM " +
                         "FROM ARRIVALS, INCOMING_ROUTES " + 
                         "WHERE ARRIVALS.RNUM = INCOMING_ROUTES.RNUM " +
                         "AND 24 * ABS(ARR_T - TO_DATE('" + dateTimeString + "', 'YYYY-MM-DD hh24:mi')) <= 1"
                     );
-        Statement stmtOut = conn.createStatement();
-        ResultSet rsetOut = stmtOut.executeQuery(
-                        "SELECT TO_CHAR(DEP_T, 'yyyy-MM-dd hh24:mi') DEP_T, DEPARTURES.ACODE DACODE, DESTINATION, GNUM DGNUM " +
-                        "FROM DEPARTURES, OUTGOING_ROUTES " +
-                        "WHERE DEPARTURES.RNUM = OUTGOING_ROUTES.RNUM " +
-                        "AND 24 * ABS(DEP_T - TO_DATE('" + dateTimeString + "', 'YYYY-MM-DD hh24:mi')) <= 1 ");
+        
       
         out.println("<HTML>");
         out.println("<HEAD>");
@@ -104,15 +99,22 @@ public class Flights extends HttpServlet {
             out.println("<tr>");
             out.print (
                 "<td>"+rset.getString("ARR_T")+"</td>"+
-                "<td>"+rset.getString("AACODE")+"</td>"+
+                "<td>"+rset.getString("ACODE")+"</td>"+
                 "<td>"+rset.getString("SOURCE")+"</td>"+
-                "<td>"+rset.getString("AGNUM")+"</td>" +
+                "<td>"+rset.getString("GNUM")+"</td>" +
                 "<td>"+ status +"</td>"
                 );
                 out.println("</tr>");
         }
         out.println("</tbody>");
         out.println("</table>"); // end of table
+
+        Statement stmtOut = conn.createStatement();
+        ResultSet rsetOut = stmtOut.executeQuery(
+            "SELECT TO_CHAR(DEP_T, 'yyyy-MM-dd hh24:mi') DEP_T, DEPARTURES.ACODE DACODE, DESTINATION, GNUM DGNUM " +
+            "FROM DEPARTURES, OUTGOING_ROUTES " +
+            "WHERE DEPARTURES.RNUM = OUTGOING_ROUTES.RNUM " +
+            "AND 24 * ABS(DEP_T - TO_DATE('" + dateTimeString + "', 'YYYY-MM-DD hh24:mi')) <= 1 ");
 
         out.println("<table class='table table-striped table-hover'>");
         out.println("<caption>DEPARTURES</caption>");
@@ -128,7 +130,7 @@ public class Flights extends HttpServlet {
         out.println("<tbody>");
         while (rsetOut.next()) {
 
-            Date date = dateFormat.parse(rset.getString("DEP_T"));
+            Date date = dateFormat.parse(rsetOut.getString("DEP_T"));
             String status = (chosenDate.before(date))?"Scheduled":"Departed";
 
             out.println("<tr>");

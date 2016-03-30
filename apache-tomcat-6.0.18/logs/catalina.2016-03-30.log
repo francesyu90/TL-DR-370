@@ -36,3 +36,7 @@ Mar 30, 2016 12:31:02 AM org.apache.catalina.core.StandardWrapper unload
 INFO: Waiting for 1 instance(s) to be deallocated
 Mar 30, 2016 12:31:03 AM org.apache.catalina.core.StandardWrapper unload
 INFO: Waiting for 1 instance(s) to be deallocated
+Mar 30, 2016 12:34:24 AM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
+Mar 30, 2016 12:37:44 AM org.apache.catalina.core.StandardContext reload
+INFO: Reloading this Context has started
