@@ -90,7 +90,15 @@ public class InsertArrivals extends HttpServlet {
             stmt.close();
             
         }
-        catch(SQLException e) { out.println(e); }
+        catch(SQLException e) { 
+            out.println("<div class='alert alert-danger' role='alert'>");
+            out.println("<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>");
+            out.println(e);
+            out.println("</div>"); 
+            out.println("</div>");  //  end of padding top
+            out.println("</BODY>");
+            out.println("</HTML>");
+        }
         ConnectionManager.getInstance().returnConnection(conn);
 
     }

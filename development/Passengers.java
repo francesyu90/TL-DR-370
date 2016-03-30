@@ -41,7 +41,6 @@ public class Passengers extends HttpServlet {
                 out.println("</ul>");
                 out.println("</nav>");
                 out.println("<div class='paddingTop'>");
-                // out.println("<a href='../insertAirlines.html' class='btn btn-info floatRight' role='button'>Insert New Airline</a>");
            		out.println("<br>");
                 out.println("<h3>Passengers");
                 out.println("</h3>");

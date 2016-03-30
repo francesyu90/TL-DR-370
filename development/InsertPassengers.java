@@ -95,6 +95,9 @@ public class InsertPassengers extends HttpServlet {
                 out.println("<div class='alert alert-success' role='alert'>");
                 out.println("Insertion Successful!");
                 out.println("</div>");
+                out.println("</div>");  //  end of padding top
+                out.println("</BODY>");
+                out.println("</HTML>");
 
                
             }
@@ -122,9 +125,7 @@ public class InsertPassengers extends HttpServlet {
             out.println("</HTML>");
         }
 
-        out.println("</div>");  //  end of padding top
-        out.println("</BODY>");
-        out.println("</HTML>");
+       
 
     }
 
